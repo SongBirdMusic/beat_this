@@ -2,11 +2,13 @@
 """
 Beat This! command line inference tool.
 """
+
 import argparse
 import sys
 from pathlib import Path
 
 import torch
+
 try:
     import tqdm
 except ImportError:
@@ -63,7 +65,7 @@ def get_parser():
     parser.add_argument(
         "--dbn",
         default=False,
-        action=argparse.BooleanOptionalAction,
+        action="store_true",
         help="Override the option to use madmom's postprocessing DBN.",
     )
     parser.add_argument(

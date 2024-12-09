@@ -3,6 +3,7 @@ Model definitions for the Beat This! beat tracker.
 """
 
 from collections import OrderedDict
+from typing import Optional
 
 import torch
 from einops import rearrange
@@ -129,8 +130,8 @@ class BeatThis(nn.Module):
         in_dim: int,
         out_dim: int,
         partial_transformers: bool = True,
-        head_dim: int | None = 32,
-        rotary_embed: RotaryEmbedding | None = None,
+        head_dim: int = 32,
+        rotary_embed: Optional[RotaryEmbedding] = None,
         dropout: float = 0.1,
     ) -> nn.Module:
         if partial_transformers and (head_dim is None or rotary_embed is None):

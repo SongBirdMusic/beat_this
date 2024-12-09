@@ -1,4 +1,5 @@
 from concurrent.futures import ThreadPoolExecutor
+from typing import Optional, Tuple
 
 import numpy as np
 import torch
@@ -40,8 +41,8 @@ class Postprocessor:
         self,
         beat: torch.Tensor,
         downbeat: torch.Tensor,
-        padding_mask: torch.Tensor | None = None,
-    ) -> tuple[np.ndarray, np.ndarray]:
+        padding_mask: Optional[torch.Tensor] = None,
+    ) -> Tuple[np.ndarray, np.ndarray]:
         """
         Apply postprocessing to the input beat and downbeat tensors. Works with batched and unbatched inputs.
         The output is a list of times in seconds, or a list of lists of times in seconds, if the input is batched.

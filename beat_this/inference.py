@@ -1,4 +1,5 @@
 import inspect
+from typing import Optional, Tuple, Union
 
 import numpy as np
 import soxr
@@ -13,7 +14,9 @@ from beat_this.utils import replace_state_dict_key, save_beat_tsv
 CHECKPOINT_URL = "https://cloud.cp.jku.at/index.php/s/7ik4RrBKTS273gp"
 
 
-def load_checkpoint(checkpoint_path: str, device: str | torch.device = "cpu") -> dict:
+def load_checkpoint(
+    checkpoint_path: str, device: Union[str, torch.device] = "cpu"
+) -> dict:
     """
     Load a BeatThis checkpoint as a dictionary.
 
@@ -55,7 +58,7 @@ def load_checkpoint(checkpoint_path: str, device: str | torch.device = "cpu") ->
 
 
 def load_model(
-    checkpoint_path: str | None = "final0", device: str | torch.device = "cpu"
+    checkpoint_path: Optional[str] = "final0", device: Union[str, torch.device] = "cpu"
 ) -> BeatThis:
     """
     Load a BeatThis model from a checkpoint.
@@ -143,8 +146,8 @@ def aggregate_prediction(
     chunk_size: int,
     border_size: int,
     overlap_mode: str,
-    device: str | torch.device,
-) -> tuple[torch.Tensor, torch.Tensor]:
+    device: Union[str, torch.device],
+) -> Tuple[torch.Tensor, torch.Tensor]:
     """
     Aggregates the predictions for the whole piece based on the given prediction chunks.
 
